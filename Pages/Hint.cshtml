@@ -1,0 +1,48 @@
+@page "/hint"
+@model Tarjimator.Pages.HintModel
+@{ }
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" charset="utf-8" />
+    <title>The Tarjimator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body style="font-family: 'JetBrains Mono', monospace">
+    <div class="flex flex-col justify-center">
+        <div class="px-10 py-7 grid grid-cols-2">
+            <div><p class="text-6xl">The Tarjimator</p></div>
+            <div>
+                <a asp-page="Index">
+                    <div class="float-right px-6 py-2 rounded bg-green-500 hover:bg-green-700 mt-3 text-white">
+                        Back to homepage
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="px-10 py-5">
+            <div class="grid grid-cols-8">
+                @foreach(var kv in Model.Lookups)
+                {
+                    if ((new string[] {"ь", "э", "ю", "я"}).Contains(kv.Value))
+                    {
+                        <div class="bg-green-500 text-white text-2xl text-center rounded px-3 py-8 my-4 mx-2">
+                            @kv.Key => @kv.Value
+                        </div>
+                    }
+                    else 
+                    {
+                        <div class="bg-green-500 text-white text-2xl text-center rounded px-3 py-4 my-4 mx-2">
+                            @kv.Key => @kv.Value
+                        </div>
+                    }
+                }
+                <div class="col-span-4 bg-green-500 text-white text-2xl text-center rounded px-3 py-4 my-4 mx-2">
+                    Enclose the text &#60;&#33;&#45;&#45;this way&#45;&#45;&#62;<br />to leave it as is
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
