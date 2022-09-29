@@ -49,6 +49,8 @@ public class TarjimationEngine
 
     public string Transliterate(string text)
     {
+        if (String.IsNullOrEmpty(text)) return "";
+
         string processedText = text;
 
         var matches = Regex.Matches(text, @"<!--[\p{P}|\w|\s]*-->");
