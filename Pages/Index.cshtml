@@ -1,60 +1,73 @@
-@page
+@page "/"
 @model Tarjimator.Pages.IndexModel
-@{ }
+@{ 
+    Layout = "_Layout";
+}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" charset="utf-8" />
-    <title>The Tarjimator</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body style="font-family: 'JetBrains Mono', monospace">
-    <div class="flex flex-col justify-center">
-        <div class="px-10 py-7 grid grid-cols-2">
-            <div><p class="text-6xl">The Tarjimator</p></div>
-            <div>
-                <a asp-page="Hint">
-                    <div class="float-right px-6 py-2 mt-3 rounded bg-green-500 hover:bg-green-700 text-white">
-                        Hints
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="px-10 py-5 grid grid-cols-2">
-            <div class="mr-2">
-                <form method="post">
-                    <label asp-for="OriginalText" class="block text-gray-900 mb-2 px-2">Original text</label>
-                    <textarea asp-for="OriginalText" placeholder="Your text goes here..." rows="13"
-                        class="block w-full p-3 rounded-lg border border-gray-300 bg-gray-50" spellcheck="false"></textarea>
-                    @* <a asp-page="Index">
-                        <div class="p-6 rounded bg-blue-500 hover:bg-blue-700 text-white">
-                            Tarjimate!
-                        </div>
-                    </a> *@
-                    <button type="submit" asp-page-handler="Submit" class="px-6 py-2 my-3 rounded bg-blue-500 hover:bg-blue-700 text-white">
-                        Tarjimate!
-                    </button>
-                </form>
-            </div>
-            <div class="ml-2">
-                <label for="tarjimated" class="block text-gray-900 mb-2 px-2">Transliterated</label>
-                <div id="tarjimated" class="h-4/5 bg-yellow-400 text-black rounded border border-gray-300 py-4 px-5">
-                    @Model.TarjimatedText
+
+<div class="flex flex-col justify-center">
+    <div class="px-10 py-7 grid grid-cols-2">
+        <a asp-page="Index"><div><p class="text-6xl">The Tarjimator</p></div></a>
+        <div>
+            <a asp-page="Hint">
+                <div class="float-right px-6 py-2 mt-3 rounded bg-green-500 hover:bg-green-700 text-white">
+                    Hints
                 </div>
-                <button onclick="copyToCB()" class="px-6 py-2 my-3 rounded bg-blue-500 hover:bg-blue-700 text-white">
-                    Copy to clipboard
-                </button>
-            </div>
+            </a>
         </div>
     </div>
-    <script>
-        function copyToCB()
-        {
-            var textToCopy = document.getElementById("tarjimated").innerText;
+    <div class="px-10 py-5 grid grid-cols-2">
+        <div class="mr-2">
+            <form method="post">
+                <label asp-for="OriginalText" class="block text-gray-900 mb-2 px-2">Original text</label>
+                <textarea asp-for="OriginalText" placeholder="Your text goes here..." rows="13"
+                    class="block w-full p-3 rounded-lg border border-gray-300 bg-gray-50" spellcheck="false"></textarea>
+                @* <a asp-page="Index">
+                    <div class="p-6 rounded bg-blue-500 hover:bg-blue-700 text-white">
+                        Tarjimate!
+                    </div>
+                </a> *@
+                <button type="submit" asp-page-handler="Submit" class="px-6 py-2 my-3 rounded bg-blue-500 hover:bg-blue-700 text-white">
+                    Tarjimate!
+                </button>
+            </form>
+        </div>
+        <div class="ml-2">
+            <label for="tarjimated" class="block text-gray-900 mb-2 px-2">Transliterated</label>
+            <div id="tarjimated" class="h-4/5 bg-yellow-400 text-black rounded border border-gray-300 py-4 px-5">
+                @Model.TarjimatedText
+            </div>
+            <button onclick="copyToCB()" class="px-6 py-2 my-3 rounded bg-blue-500 hover:bg-blue-700 text-white">
+                Copy to clipboard
+            </button>
+            <button class="notifier px-6 py-2 my-3 rounded bg-black text-white" style="opacity: 0;">
+                In the clipboard ✔
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+    function copyToCB()
+    {
+        let notifAnimation = anime({
+            targets: '.notifier',
+            opacity: 1.0,
+            direction: 'alternate',
+            duration: 2023,
+            easing: 'easeInOutQuart'
+        })
 
-            navigator.clipboard.writeText(textToCopy);
-        }
-    </script>
-</body>
-</html>
+        // easings.net -> for even cooler easing functions
+
+        let notification = document.getElementsByClassName("notifier")[0];
+        notification.style.setProperty("display", "inline");
+        setTimeout((() => {
+            @* notification.style.setProperty("display", "none"); *@
+            notifAnimation.play();
+        }), 600);            
+
+        var textToCopy = document.getElementById("tarjimated").innerText;
+
+        navigator.clipboard.writeText(textToCopy);
+    }
+</script>

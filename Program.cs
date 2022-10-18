@@ -7,6 +7,7 @@ builder.Services.AddSingleton<TarjimationEngine>();
 
 var app = builder.Build();
 
+app.UseStaticFiles();
 app.UseRouting();
 app.MapRazorPages();
 app.MapFallback(async ctx => await ctx.Response
