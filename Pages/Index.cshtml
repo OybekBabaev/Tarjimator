@@ -2,6 +2,7 @@
 @model Tarjimator.Pages.IndexModel
 @{ 
     Layout = "_Layout";
+    ViewBag.Title = "Homepage - The Tarjimator";
 }
 
 
@@ -49,25 +50,27 @@
 <script>
     function copyToCB()
     {
-        let notifAnimation = anime({
-            targets: '.notifier',
-            opacity: 1.0,
-            direction: 'alternate',
-            duration: 2023,
-            easing: 'easeInOutQuart'
-        })
+        let tarjimatedText = document.getElementById("tarjimated").innerText;
 
-        // easings.net -> for even cooler easing functions
+        if (!(tarjimatedText == "Nothing here yet..." || tarjimatedText == ""))
+        {
+            let notifAnimation = anime({
+                targets: '.notifier',
+                opacity: 1.0,
+                direction: 'alternate',
+                duration: 2023,
+                easing: 'easeInOutQuart'
+            })
 
-        let notification = document.getElementsByClassName("notifier")[0];
-        notification.style.setProperty("display", "inline");
-        setTimeout((() => {
-            @* notification.style.setProperty("display", "none"); *@
+            // easings.net -> for even cooler easing functions
+
+            let notification = document.getElementsByClassName("notifier")[0];
+            notification.style.setProperty("display", "inline");
             notifAnimation.play();
-        }), 600);            
 
-        var textToCopy = document.getElementById("tarjimated").innerText;
+            var textToCopy = document.getElementById("tarjimated").innerText;
 
-        navigator.clipboard.writeText(textToCopy);
+            navigator.clipboard.writeText(textToCopy);
+        }
     }
 </script>
