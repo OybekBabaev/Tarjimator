@@ -23,11 +23,6 @@
                 <label asp-for="OriginalText" class="block text-gray-900 mb-2 px-2">Original text</label>
                 <textarea asp-for="OriginalText" placeholder="Your text goes here..." rows="13"
                     class="block w-full p-3 rounded-lg border border-gray-300 bg-gray-50" spellcheck="false"></textarea>
-                @* <a asp-page="Index">
-                    <div class="p-6 rounded bg-blue-500 hover:bg-blue-700 text-white">
-                        Tarjimate!
-                    </div>
-                </a> *@
                 <button type="submit" asp-page-handler="Submit" class="px-6 py-2 my-3 rounded bg-blue-500 hover:bg-blue-700 text-white">
                     Tarjimate!
                 </button>
@@ -36,9 +31,10 @@
         <div class="ml-2">
             <label for="tarjimated" class="block text-gray-900 mb-2 px-2">Transliterated</label>
             <div id="tarjimated" class="h-4/5 bg-yellow-400 text-black rounded border border-gray-300 py-4 px-5">
-                @Model.TarjimatedText
+                @Model.TarjimatedText.Trim()
             </div>
-            <button onclick="copyToCB()" class="px-6 py-2 my-3 rounded bg-blue-500 hover:bg-blue-700 text-white">
+            <button class="copyButton px-6 py-2 my-3 rounded bg-blue-500 hover:bg-blue-700 text-white"
+                data-clipboard-target="#tarjimated">
                 Copy to clipboard
             </button>
             <button class="notifier px-6 py-2 my-3 rounded bg-black text-white" style="opacity: 0;">
@@ -48,7 +44,7 @@
     </div>
 </div>
 <script>
-    function copyToCB()
+    @* function copyToCB()
     {
         let tarjimatedText = document.getElementById("tarjimated").innerText;
 
@@ -72,5 +68,18 @@
 
             navigator.clipboard.writeText(textToCopy);
         }
-    }
+    } *@
+    let clipboard = new ClipboardJS(".copyButton");
+
+    clipboard.on('success', function() {
+        let notifAnimation = anime({
+            targets: '.notifier',
+            opacity: 1.0,
+            direction: 'alternate',
+            duration: 2023,
+            easing: 'easeInOutQuart'
+        });
+
+        notifAnimation.play();
+    });
 </script>

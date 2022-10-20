@@ -7,6 +7,7 @@ builder.Services.AddSingleton<TarjimationEngine>();
 
 var app = builder.Build();
 
+app.UseHsts();
 app.UseStaticFiles();
 app.UseRouting();
 app.MapRazorPages();
