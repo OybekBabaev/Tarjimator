@@ -5,14 +5,14 @@
     <title>@ViewBag.Title</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="~/lib/animejs/anime.min.js"></script>
-    <script src="~/lib/clipboardjs/clipboard.min.js"></script>
+    <script src="~/lib/simplecopyjs/simplecopy.min.js"></script>
     <link rel="icon" href="~/img/T_original.png" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
 </head>
-<body style="font-family: 'JetBrains Mono', monospace">
+<body style="font-family: 'JetBrains Mono', monospace" class="dark:bg-zinc-900">
     @RenderBody()
     <a href="https://github.com/OybekBabaev/Tarjimator" target="_blank">
-        <div class="absolute bottom-7 px-5 mx-5">
+        <div class="absolute bottom-7 px-5 mx-5 dark:text-white">
             <p class="text-xl">Source code on Github <i class="fa fa-github"></i></p>
         </div>
     </a>
