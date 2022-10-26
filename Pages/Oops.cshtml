@@ -1,0 +1,21 @@
+@page "/oops"
+@model Tarjimator.Pages.OopsModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Oops!";
+}
+
+<div class="flex flex-col justify-center">
+    <div class="p-4 mt-3 mx-3">
+        <p class="text-3xl text-black">
+            @Model.TheMessage
+        </p>
+    </div>
+    <div>
+        <a asp-page="Index">
+            <div class="float-left px-6 py-2 rounded bg-green-500 hover:bg-green-700 mt-3 ml-7 text-white">
+                Back to homepage
+            </div>
+        </a>
+    </div>
+</div>

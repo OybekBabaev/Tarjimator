@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="px-10 py-5">
-        <div class="grid grid-cols-8">
+        <div id="hintsTable" class="grid grid-cols-8" onload="emergeFunc()" style="opacity: 0;">
             @foreach(var kv in Model.Lookups)
             {
                 if ((new string[] {"ь", "э", "ю", "я"}).Contains(kv.Value))
@@ -39,3 +39,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    let emergeAnimation = anime({
+        targets: '#hintsTable',
+        opacity: 1.0,
+        duration: 2723,
+        easing: 'easeOutQuad'
+    });
+
+    function emergeFunc() { emergeAnimation.play() }
+</script>

@@ -44,31 +44,6 @@
     </div>
 </div>
 <script>
-    @* function copyToCB()
-    {
-        let tarjimatedText = document.getElementById("tarjimated").innerText;
-
-        if (!(tarjimatedText == "Nothing here yet..." || tarjimatedText == ""))
-        {
-            let notifAnimation = anime({
-                targets: '.notifier',
-                opacity: 1.0,
-                direction: 'alternate',
-                duration: 2023,
-                easing: 'easeInOutQuart'
-            })
-
-            // easings.net -> for even cooler easing functions
-
-            let notification = document.getElementsByClassName("notifier")[0];
-            notification.style.setProperty("display", "inline");
-            notifAnimation.play();
-
-            var textToCopy = document.getElementById("tarjimated").innerText;
-
-            navigator.clipboard.writeText(textToCopy);
-        }
-    } *@
     let clipboard = new ClipboardJS(".copyButton");
 
     clipboard.on('success', function() {
@@ -79,7 +54,6 @@
             duration: 2023,
             easing: 'easeInOutQuart'
         });
-
         notifAnimation.play();
     });
 </script>
