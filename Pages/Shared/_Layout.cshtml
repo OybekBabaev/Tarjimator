@@ -10,11 +10,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
 </head>
 <body style="font-family: 'JetBrains Mono', monospace" class="dark:bg-zinc-900">
-    @RenderBody()
-    <a href="https://github.com/OybekBabaev/Tarjimator" target="_blank">
-        <div class="absolute bottom-7 px-5 mx-5 dark:text-white">
-            <p class="text-xl">Source code on Github <i class="fa fa-github"></i></p>
-        </div>
-    </a>
+    <div>
+        @RenderBody()
+        <a href="https://github.com/OybekBabaev/Tarjimator" target="_blank">
+            <div class="bottom-0 px-7 dark:text-white md:text-xl bg-white dark:bg-zinc-900 
+                py-6 fixed w-full">
+                Source code on Github <i class="fa fa-github"></i>
+            </div>
+        </a>
+    </div>
 </body>
 </html>
