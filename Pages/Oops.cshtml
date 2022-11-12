@@ -1,32 +1,21 @@
 @page "/oops"
 @model Tarjimator.Pages.OopsModel
+@{
+    Layout = "_SimplerLayout";
+    ViewBag.Title = "Oops!";
+}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" charset="utf-8" />
-    <title>Oops!</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="~/img/T_original.png" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
-</head>
-<body style="font-family: 'JetBrains Mono', monospace" class="dark:bg-zinc-900">
-    <div class="flex flex-col justify-center">
-        <div class="p-4 mt-3 mx-3">
-            <p class="text-3xl text-black dark:text-white">
-                @Model.TheMessage
-            </p>
-        </div>
-        <div>
-            <a asp-page="Index">
-                <div class="float-left px-6 py-2 rounded bg-green-500 hover:bg-green-700 dark:text-zinc-800 dark:hover:text-slate-200 mt-3 ml-7 text-white dark:text-zinc-800">
-                    Back home
-                </div>
-            </a>
-        </div>
+<div class="flex flex-col justify-center">
+    <div class="p-4 mt-3 mx-3">
+        <p class="text-3xl text-black dark:text-white">
+            @Model.TheMessage
+        </p>
     </div>
-</body>
-</html>
+    <div>
+        <a asp-page="Index">
+            <div class="float-left px-6 py-2 rounded bg-green-500 hover:bg-green-700 dark:text-zinc-800 dark:hover:text-slate-200 mt-3 ml-7 text-white dark:text-zinc-800">
+                Back home
+            </div>
+        </a>
+    </div>
+</div>
